@@ -11,15 +11,6 @@ terraform {
 # CREATE s3 BUCKET
 # ---------------------------------------------------------------------------------------------------------------------
 
-data "template_file" "policy" {
-  template = file("${path.module}/policy/bucket_policy.json")
-  vars = {
-    bucket_name = aws_s3_bucket.main.bucket
-  }
-
-  depends_on = [aws_s3_bucket.main]
-}
-
 resource "aws_s3_bucket" "main" {
   count = var.create_s3 ? 1 : 0
 
@@ -49,4 +40,13 @@ resource "aws_s3_bucket" "main" {
       }
     }
   }
+}
+
+data "template_file" "policy" {
+  template = file("${path.module}/policy/bucket_policy.json")
+  vars = {
+    bucket_name = aws_s3_bucket.main.bucket
+  }
+
+  depends_on = [aws_s3_bucket.main]
 }
