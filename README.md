@@ -8,7 +8,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-module "ecs_fargate" {
+module "s3_bucket" {
   source = "git::github.com/lbrealdev/terraform-aws-s3"
 
   bucket_name = "yourbucketname"
