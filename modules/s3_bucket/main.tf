@@ -16,6 +16,8 @@ data "template_file" "policy" {
   vars = {
     bucket_name = aws_s3_bucket.main.bucket
   }
+
+  depends_on = [aws_s3_bucket.main]
 }
 
 resource "aws_s3_bucket" "main" {
