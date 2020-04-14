@@ -14,7 +14,7 @@ terraform {
 data "template_file" "policy" {
   template = file("${path.module}/policy/bucket_policy.json")
   vars = {
-    bucket_name = var.bucket
+    bucket_name = aws_s3_bucket.main.bucket
   }
 }
 
